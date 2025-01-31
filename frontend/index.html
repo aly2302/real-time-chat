@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Client</title>
+    <title>Futuristic Chat App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>WebSocket Test</h2>
-    <div id="messages"></div>
-    <script>
-        const ws = new WebSocket('ws://localhost:8080');
+    <div id="chat-container">
+        <div class="sidebar">
+            <h2>Futuristic Chat</h2>
+            <div class="chatrooms">
+                <div class="chatroom">General</div>
+                <div class="chatroom">Technology</div>
+                <div class="chatroom">Gaming</div>
+            </div>
+        </div>
 
-        ws.onopen = () => {
-            console.log('Connected to WebSocket');
-            ws.send('Hello, server!');
-        };
+        <div class="chat-area">
+            <div class="chat-header">
+                <span id="chatroom-name">General</span>
+            </div>
+            <div class="message-container" id="message-container">
+                <!-- Messages will go here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message..." />
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
 
-        ws.onmessage = (event) => {
-            console.log('Received: ', event.data);
-            const messageDiv = document.getElementById('messages');
-            messageDiv.innerHTML += `<p>${event.data}</p>`;
-        };
-
-        ws.onerror = (error) => {
-            console.error('WebSocket Error: ', error);
-        };
-
-        ws.onclose = () => {
-            console.log('Disconnected from WebSocket');
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
